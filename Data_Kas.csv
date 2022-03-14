@@ -1,4 +1,4 @@
-﻿point ,valley,geomorph zone,potential disturbance,soil_age,stoniness surface (%),stoniness soil (%),veg type,texture class,sorting,sand fraction,pH field,soil classification,SSD
+﻿point ,valley,geomorph_zone,potential_disturbance,soil_age,stoniness_surface,stoniness_soil,veg_type,texture_class,sorting,sand_fraction,pH_field,soil_classification,SSD
 F3,F,,,1,80,60,,sand,poor,coarse sand,6.5,skeletic leptosol,0
 F1,F,development,,2.5,95,60,,sand,poor,coarse sand,6.5,skeletic leptosol,0
 F2,F,development,,2.8,5,50,,sand,layered,medium sand,6.5,haplic fluvisol,0
