@@ -1,0 +1,232 @@
+---
+title: "Replication_Assignment"
+author: "Anais"
+date: "3/14/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Introduction
+
+ Short text description of the study and of the specific data and reanalyses you will be doing, to orient your reader. Outline (briefly!) the goal of the original paper, the data set used, and the analyses conducted, then describe which ones you will replicate.
+ 
+ This document is divided is 3 parts
+1. Summary statistic
+ Replication of Table II. Summary statistics of soil observations
+2.Linear model 
+Replication of:
+* Figure 5. pH Values as a function of time since glacial retreat for observations in the fluvial and stable zones, with potential debris flows in the stable zone separated from the rest of that zone. 
+* Table III. Strength (r) and significance (p (r = 0)) of the correlation between the time since glacial retreat and soil properties, for the stable zone of the pro-glacial areas in all three valleys
+3. Multiregression analysis
+Replication of Table IV. Multiple linear regression model performance (r2 value) for soil properties for each valley
+ 
+ 
+### Preliminaries 
+-   Install and load in the following libraries:{tidyverse},{rstatix}
+
+```{r, include=FALSE}
+
+library(tidyverse)
+library(rstatix) #for get_summary_stats()
+
+
+```
+
+-   Loading the data
+
+* The soil data set comes from 111 locations visited; 46 in the Morteratsch (M) valley, 36 in the Tschierva (T) valley and 29 in the Forno (F) valley.
+* Vegetation cover(%) data and Depth of soil formation (cm) were not shared within the csv document
+* The landscape dataset was not shared.
+
+
+```{r}
+f <- "https://raw.githubusercontent.com/anaiszimmer/Data_Analysis_Replication_Assignment/main/Data_Kas.csv"
+d <- read_csv(f, col_names = TRUE)
+head(d)
+#View(d)
+
+```
+
+### 1. Summary statistic
+
+* Paper's method: The T-test was used to test for differences in mean soil properties between the different zones in pro-glacial areas.
+
+* Table II presents summary statistics for some numerical attributes of the soils for every pro-glacial valley for the stable and fluvial zones.
+
+```{r, include=true}
+# 
+# All_summary_stat<-d%>%
+#   get_summary_stats(
+#     pH_field,stoniness_soil, stoniness_surface,#variables of interest
+#     type="common", # Common  statistics of interest
+#     show=c("mean","sd"))%>% #summary stat to return
+#   mutate_if(is.numeric, round, digits=1)
+# All_summary_stat
+# 
+# 
+# Valley_summary_stat<-d%>%
+#   group_by(valley)%>%
+#   get_summary_stats(
+#     pH_field,stoniness_soil, stoniness_surface,#variables of interest
+#     type="common", # Common  statistics of interest
+#     show=c("mean","sd"))%>% #summary stat to return
+#   mutate_if(is.numeric, round, digits=1)
+# Valley_summary_stat
+
+
+library(dplyr)
+library(qwraps2)
+
+options(qwraps2_markup = "markdown")
+
+# summary.table <-
+#   list("pH" =
+#         list("Mean"= ~ mean(pH_field,digits=2),
+#              "Standard deviation"= ~ sd(.data$pH_field)),
+#       "Soil Stoniness" =
+#         list("Mean"= ~ mean(stoniness_soil, digits=1),
+#              "Standard deviation"= ~ sd(.data$stoniness_soil)),
+#       "Surface Stoniness"=
+#         list("Mean"= ~ mean(stoniness_surface),
+#              "Standard deviation"= ~ sd(.data$stoniness_surface)))
+# 
+
+
+options(digits = 2)  
+table <-
+  list("pH" =
+        list("Mean"= ~ mean(.data$pH_field,na.rm=TRUE),
+             "Standard deviation"= ~ sd(.data$pH_field,na.rm=TRUE)),
+      "Soil Stoniness (%)" =
+        list("Mean"= ~ mean(.data$stoniness_soil),
+             "Standard deviation"= ~ sd(.data$stoniness_soil)),
+      "Surface Stoniness (%)"=
+        list("Mean"= ~ mean(.data$stoniness_surface),
+             "Standard deviation"= ~ sd(.data$stoniness_surface)))
+
+
+by_valley<-qwraps2::summary_table(dplyr::group_by(d,valley),table)
+by_valley
+
+whole<-qwraps2::summary_table(d,table)
+whole
+
+
+#whole%>%format(round(2), nsmall = 2)
+
+both <- cbind(whole, by_valley)
+both
+
+print(both,
+      rtitle = "Pro-glacial area",
+      cnames = c("All", "Forno", "Tschierva", "Morteratsch"))
+
+```
+Figure 5. pH Values as a function of time since glacial retreat for observations in the fluvial and stable zones, with potential debris flows in the stable zone separated from the rest of that zone.
+From Figure 5, it is clear that observations on the recognized debris flows have pH values that are
+relatively high, like observations on the fluvial locations, and unlike the other observations in the stable zone. This suggests that debris flows, which originate from hillslopes outside the pro-glacial area and that have been de-glaciated for millennia, nevertheless provide relatively fresh and unweathered material to the pro-glacial area.
+
+```{r, include=TRUE}
+
+library(tidyverse)
+
+pH_time<-ggplot(d, aes(y=pH_field, x=soil_age, color=geomorph_zone)) +
+  geom_point(aes(color=geomorph_zone), size=2) +
+  scale_color_manual(values=c('darkgreen','deepskyblue1','hotpink4',"blue"))+
+  theme_bw()+ 
+  coord_cartesian(ylim=c(0,8)) +
+  labs(x="pH", y="time since glacial retreat (y)") +
+  theme_bw()
+pH_time
+
+
+
+d%>%
+  drop_na(potential_disturbance)%>%
+  ggplot(aes(x=soil_age,y=pH_field, color=potential_disturbance))+
+  geom_point(aes(color=potential_disturbance), size=2) +
+  scale_color_manual(values=c('darkgreen','deepskyblue1','hotpink4',"blue"))+
+  theme_bw()+ 
+  coord_cartesian(ylim=c(0,8)) +
+  labs(x="pH", y="time since glacial retreat (y)") +
+  theme_bw()
+
+
+
+#creating new variable for "stability"
+  #stable-debris if potential_disturbance = debris flow
+  #stable if geomorpho_zome= development and potential_disturbance=NA
+  #fluvial if geomorph_zone=fluvial
+
+d$stability<-ifelse(d$geomorph_zone=="fluvial",1, ifelse(d$potential_disturbance=="debris flow", 2,""))
+#could not create directly a character value - so I use number as coding
+view(d)
+
+
+d %>% mutate(stability=str_replace(stability,'1','fluvial'))->d
+d %>% mutate(stability=str_replace(stability,'2','stable debris'))->d
+view(d)
+
+
+
+#Now plotting pH and time with stability as group
+
+pH_time<-ggplot(d, aes(y=pH_field, x=soil_age, color=stability)) +
+  geom_point(aes(color=stability), size=2) +
+  scale_color_manual(values=c('deepskyblue1','darkgreen','hotpink4',"blue"))+
+  theme_bw()+ 
+  coord_cartesian(ylim=c(0,8)) +
+  labs(x="pH", y="time since glacial retreat (y)") +
+  theme_bw()
+pH_time
+
+
+####
+# TO SOLVE
+#NA PROBLEM + third category -> but looks like the resulting data dont fit with the figure 5 of the paper -> ask for the full data set to Arnaud
+
+d%>%
+  drop_na(stability)%>%
+  ggplot(aes(x=soil_age,y=pH_field, color=stability))+
+  geom_point(aes(color=stability), size=2) +
+  scale_color_manual(values=c('grey','deepskyblue1','hotpink4','darkgreen'))+
+  theme_bw()+ 
+  coord_cartesian(ylim=c(4,8)) +
+  labs(x="pH", y="time since glacial retreat (y)") +
+  theme_bw()
+
+```
+
+
+
+### 2. Linear model
+
+
+Linear models for the various numerical soil properties were estimated with time and topographical properties as explanatory variables in order to assess the joint effect of time and topography.
+Table IV summarizes model performance for each of the soil properties in each of the valleys.
+
+```{r, include=TRUE}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```
+
+
+
+
