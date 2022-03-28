@@ -1,0 +1,32 @@
+﻿valley,geomorph zone,potential disturbance,stoniness surface (%),stoniness soil (%),veg cover (%),pH field,SSD
+F,development,debris flow,40,40,60,6,3.6
+F,development,debris flow,40,15,60,6,4.25
+F,development,debris flow,50,30,50,7,0.7
+F,development,debris flow,60,25,40,7,4.5
+F,development,debris flow,98,98,,,0
+F,development,,95,60,0,6.5,0
+F,development,,95,60,5,6,2
+F,development,,60,40,40,6.5,2.4
+F,development,,90,40,5,6.5,1.8
+F,development,,40,10,30,6.5,12.6
+F,development,,80,40,15,5.5,0.6
+F,development,,85,25,10,5,2.25
+F,development,,90,45,7,5,1.1
+F,development,,90,50,5,6,0
+F,development,,5,50,0,6.5,0
+F,development,,90,40,5,6,0
+F,development,,80,45,20,5.5,1.1
+F,development,,30,10,70,5,0
+F,development,,70,40,30,5.8,1.2
+F,development,,40,5,60,7,5.7
+F,development,,95,50,0,6.5,0
+F,development,,60,30,40,5,5.6
+F,development,,40,20,50,5,2.4
+F,development,,10,40,90,5.8,6
+F,development,,60,30,40,5,3.5
+F,fluvial,,60,40,10,7,0
+F,fluvial,,10,10,60,7,6.3
+F,fluvial,,40,15,60,7,0.85
+F,fluvial,,85,40,15,7,1.2
+F,slope,,95,45,3,5.5,0
+F,,,80,60,0,6.5,0

@@ -38,23 +38,27 @@ library(rstatix) #for get_summary_stats()
 -   Loading the data
 
 * The soil data set comes from 111 locations visited; 46 in the Morteratsch (M) valley, 36 in the Tschierva (T) valley and 29 in the Forno (F) valley.
-* Vegetation cover(%) data and Depth of soil formation (cm) were not shared within the csv document
-* The landscape dataset was not shared.
+Previous analysis were made with an incomplete data set. When I figure it out during spring break, I asked Dr. Temme for another data set. On March 25th he sent me an excel document with many tabs. Then I ordered the data to create a clean CSV to work on R.
+I have deleted my previous analysis and present in the document the new R code regarding the complete dataset.
 
 
 ```{r}
-f <- "https://raw.githubusercontent.com/anaiszimmer/Data_Analysis_Replication_Assignment/main/Data_Kas.csv"
+f <- "https://raw.githubusercontent.com/anaiszimmer/Data_Analysis_Replication_Assignment/main/Sites.csv"
+
+#f<-"https://raw.githubusercontent.com/anaiszimmer/Data_Analysis_Replication_Assignment/main/Data_Kas.csv"
 d <- read_csv(f, col_names = TRUE)
 head(d)
-#View(d)
+View(d)
+
 
 ```
-
 ### 1. Summary statistic
 
 * Paper's method: The T-test was used to test for differences in mean soil properties between the different zones in pro-glacial areas.
 
 * Table II presents summary statistics for some numerical attributes of the soils for every pro-glacial valley for the stable and fluvial zones.
+
+Note Dept of soil formation corresponds to the SSD (significant soil depth) values within the dataset.
 
 ```{r, include=true}
 # 
@@ -94,37 +98,131 @@ options(qwraps2_markup = "markdown")
 #              "Standard deviation"= ~ sd(.data$stoniness_surface)))
 # 
 
+# d$geomorph_zone<-as.character(d$geomorph_zone)
+# d<-d%>%group_by(geomorph_zone)
 
+#selecting data with only "development" and "fluvial" zone from [geomorph_zone]
+
+data<-d%>% filter(geomorph_zone!="none")%>%
+  filter(geomorph_zone!="slope")%>%
+  group_by(Site)
+view(data)
+  
 options(digits = 2)  
 table <-
   list("pH" =
         list("Mean"= ~ mean(.data$pH_field,na.rm=TRUE),
              "Standard deviation"= ~ sd(.data$pH_field,na.rm=TRUE)),
+            # "p (s = f)"=t.test()),
+       "Depth of soil formation (cm)" =
+        list("Mean"= ~ mean(.data$SSD,na.rm=TRUE),
+             "Standard deviation"= ~ sd(.data$SSD,na.rm=TRUE)),
+       "Vegetation cover (%)" =
+        list("Mean"= ~ mean(.data$veg_cover,na.rm=TRUE),
+             "Standard deviation"= ~ sd(.data$veg_cover,na.rm=TRUE)),
       "Soil Stoniness (%)" =
         list("Mean"= ~ mean(.data$stoniness_soil),
              "Standard deviation"= ~ sd(.data$stoniness_soil)),
       "Surface Stoniness (%)"=
-        list("Mean"= ~ mean(.data$stoniness_surface),
-             "Standard deviation"= ~ sd(.data$stoniness_surface)))
+        list("Mean"= ~ mean(.data$stoniness_surf),
+             "Standard deviation"= ~ sd(.data$stoniness_surf)))
 
+by_site<-qwraps2::summary_table(dplyr::group_by(data,Site),table)
+by_site
 
-by_valley<-qwraps2::summary_table(dplyr::group_by(d,valley),table)
-by_valley
+## DOES NOT WORK
+#by_zone<-qwraps2::summary_table(dplyr::group_by(d,geomorph_zone),by_site)
+#by_zone
 
+options(digits = 2)  
 whole<-qwraps2::summary_table(d,table)
-whole
-
+whole<-round(whole,2)
+str(whole)
 
 #whole%>%format(round(2), nsmall = 2)
 
-both <- cbind(whole, by_valley)
+options(digits = 2)  
+both <- cbind(whole, by_site)
 both
 
 print(both,
       rtitle = "Pro-glacial area",
+      #rsubtilte=c("Fluvial", "Stable"),
       cnames = c("All", "Forno", "Tschierva", "Morteratsch"))
 
+#*******************************************************************************
+
+## Trying something else
+
+#$pH_field<-as.numeric(d$pH_field)
+
+Summary<-data%>%
+  select(Site, geomorph_zone,pH_field, stoniness_soil, stoniness_surf, veg_cover,SSD)%>%
+  group_by(Site, geomorph_zone)%>%
+  filter(geomorph_zone=="fluvial"| geomorph_zone== "development")%>%
+  summarise(across(c("pH_field", "stoniness_soil", "stoniness_surf", "veg_cover","SSD"),list(Mean=mean, SD=sd),na.rm=TRUE)) ### !!!!!!!! Need to add a function COUNT that have a na.rm argument
+Summary
+
+
+temp <- data %>%  group_by(Site, geomorph_zone) %>% summarize(n=n())
+
+temp2 <- left_join(Summary,temp,by=(c("Site","geomorph_zone")))
+
+table<-Summary%>%
+  list("pH"=
+         list("Mean"=Summary$pH_field_Mean),
+       "Standard deviation"=Summary$pH_field_SD)
+       
+print(table)
+
+Summary<-as.data.frame(Summary)
 ```
+
+```{r, include=true}
+##T-test
+
+
+#formul construction inside ttest
+#pH_Forno
+
+
+
+
+
+
+data_forno<-data%>%filter(Site=="Forno")%>%
+  select(geomorph_zone,pH_field,point)
+
+x=t.test(pH_field~geomorph_zone,data=data_forno)$p.value
+str(x)
+
+
+data_forno$pH_fluvial<-ifelse(data_forno$geomorph_zone=="fluvial",data_forno$pH_field, NA)
+data_forno$pH_development<-ifelse(data_forno$geomorph_zone=="development",data_forno$pH_field, NA)
+t.test(data_forno$pH_fluvial,data_forno$pH_development)
+
+#pH_Tschierva
+data_T<-data%>%filter(Site=="Tschierva")%>%
+  select(geomorph_zone,pH_field,point)%>%
+  group_by(geomorph_zone)%>%
+  mutate
+
+data_T$pH_fluvial<-ifelse(data_T$geomorph_zone=="fluvial",data_T$pH_field, NA)
+data_T$pH_development<-ifelse(data_T$geomorph_zone=="development",data_T$pH_field, NA)
+t.test(data_T$pH_fluvial,data_T$pH_development)
+
+#pH_Morteratsch
+data_M<-data%>%filter(Site=="Morteratsch")%>%
+  select(geomorph_zone,pH_field)%>%
+  group_by(geomorph_zone)%>%
+  mutate
+
+data_M$pH_fluvial<-ifelse(data_M$geomorph_zone=="fluvial",data_M$pH_field, NA)
+data_M$pH_development<-ifelse(data_M$geomorph_zone=="development",data_M$pH_field, NA)
+t.test(data_M$pH_fluvial,data_M$pH_development)
+
+```
+
 Figure 5. pH Values as a function of time since glacial retreat for observations in the fluvial and stable zones, with potential debris flows in the stable zone separated from the rest of that zone.
 From Figure 5, it is clear that observations on the recognized debris flows have pH values that are
 relatively high, like observations on the fluvial locations, and unlike the other observations in the stable zone. This suggests that debris flows, which originate from hillslopes outside the pro-glacial area and that have been de-glaciated for millennia, nevertheless provide relatively fresh and unweathered material to the pro-glacial area.
@@ -133,73 +231,104 @@ relatively high, like observations on the fluvial locations, and unlike the othe
 
 library(tidyverse)
 
-pH_time<-ggplot(d, aes(y=pH_field, x=soil_age, color=geomorph_zone)) +
-  geom_point(aes(color=geomorph_zone), size=2) +
-  scale_color_manual(values=c('darkgreen','deepskyblue1','hotpink4',"blue"))+
+#creating a new data set to remove "slope" and "none" values of the [geomorh_zone variable]
+d_stability_Forno<-d%>%filter(Site=="Forno")%>% ###COMMENTS : It took me a very long while to understand the graph was only including the Forno data set!
+  filter(geomorph_zone!="none")%>%
+  filter(geomorph_zone!="slope")
+
+
+
+#test after talking with Tony
+d_stability_Forno<-d_stability_Forno%>%
+  mutate(stability=case_when(
+    geomorph_zone=="development" & potential_dist=="debris flow"~"stable-debris",
+    geomorph_zone=="development"~"stable",
+    geomorph_zone=="fluvial"~"fluvial"))
+
+view(d_stability_Forno)
+
+#-****************************************************
+
+
+# #creating new variable for "stability"
+#   #stable-debris if potential_disturbance = debris flow
+#   #stable if geomorpho_zome= development and potential_disturbance=NA
+#   #fluvial if geomorph_zone=fluvial
+# 
+# d_stability_Forno$stability<-ifelse(d_stability_Forno$geomorph_zone=="fluvial",1, ifelse(d$potential_dist=="debris flow", 2,3))
+# #could not create directly a character value - so I use number as coding
+# view(d_stability_Forno)
+# 
+# d_stability_Forno %>% mutate(stability=str_replace(stability,'1','fluvial'))->d_stability_Forno
+# d_stability_Forno %>% mutate(stability=str_replace(stability,'2','stable debris'))->d_stability_Forno
+# d_stability_Forno %>% mutate(stability=str_replace(stability,'3','stable'))->d_stability_Forno
+# view(d_stability_Forno)
+
+d_stability_Forno$stability<-factor(d_stability_Forno$stability,levels=c("stable-debris", "stable","fluvial"))
+
+pH_time<-ggplot(d_stability_Forno, aes(y=pH_field, x=realTSR, color=stability)) +
+  geom_point(aes(color=stability), size=3) +
+  scale_color_manual(values=c('hotpink3','darkgreen','deepskyblue3'))+
   theme_bw()+ 
-  coord_cartesian(ylim=c(0,8)) +
-  labs(x="pH", y="time since glacial retreat (y)") +
+  coord_cartesian(xlim=c(0,120),ylim=c(4,8)) +
+  scale_x_continuous(breaks = c(0, 20, 40, 60, 80, 100,120))+
+  labs(x="time since glacial retreat (y)", y="pH") +
   theme_bw()
 pH_time
 
 
 
-d%>%
-  drop_na(potential_disturbance)%>%
-  ggplot(aes(x=soil_age,y=pH_field, color=potential_disturbance))+
-  geom_point(aes(color=potential_disturbance), size=2) +
-  scale_color_manual(values=c('darkgreen','deepskyblue1','hotpink4',"blue"))+
+F28?? 
+```
+#On this first version of the graph we still observe two points that are different: one that appear as stable and should appear as stable-debris.
+
+Now looking at teh same graph but using different shapes to draw the pH values, we notice that F27 and F29 where superposed. 
+The blue luvial F27 was hidden by the green stable 29.
+
+
+```{r}
+pH_time<-ggplot(d_stability_Forno, aes(y=pH_field, x=realTSR, color=stability)) +
+  geom_point(aes(shape=stability,color=stability), size=3) +
+  scale_color_manual(values=c('hotpink3','darkgreen','deepskyblue3'))+
+  scale_shape_manual(values=c(22,21,24))+
   theme_bw()+ 
-  coord_cartesian(ylim=c(0,8)) +
-  labs(x="pH", y="time since glacial retreat (y)") +
-  theme_bw()
-
-
-
-#creating new variable for "stability"
-  #stable-debris if potential_disturbance = debris flow
-  #stable if geomorpho_zome= development and potential_disturbance=NA
-  #fluvial if geomorph_zone=fluvial
-
-d$stability<-ifelse(d$geomorph_zone=="fluvial",1, ifelse(d$potential_disturbance=="debris flow", 2,""))
-#could not create directly a character value - so I use number as coding
-view(d)
-
-
-d %>% mutate(stability=str_replace(stability,'1','fluvial'))->d
-d %>% mutate(stability=str_replace(stability,'2','stable debris'))->d
-view(d)
-
-
-
-#Now plotting pH and time with stability as group
-
-pH_time<-ggplot(d, aes(y=pH_field, x=soil_age, color=stability)) +
-  geom_point(aes(color=stability), size=2) +
-  scale_color_manual(values=c('deepskyblue1','darkgreen','hotpink4',"blue"))+
-  theme_bw()+ 
-  coord_cartesian(ylim=c(0,8)) +
-  labs(x="pH", y="time since glacial retreat (y)") +
+  coord_cartesian(xlim=c(0,120),ylim=c(4,8)) +
+  scale_x_continuous(breaks = c(0, 20, 40, 60, 80, 100,120))+
+  labs(x="time since glacial retreat (y)", y="pH") +
+  ggrepel::geom_text_repel(data=d_stability_Forno,mapping= aes(label=d_stability_Forno$point),size=3,box.padding=unit(0.5,"lines"))+
   theme_bw()
 pH_time
+```
 
+Similar conclusion are observed using geom_jitter(), and playing with the transparency alpha:
 
-####
-# TO SOLVE
-#NA PROBLEM + third category -> but looks like the resulting data dont fit with the figure 5 of the paper -> ask for the full data set to Arnaud
+```{r}
 
-d%>%
-  drop_na(stability)%>%
-  ggplot(aes(x=soil_age,y=pH_field, color=stability))+
-  geom_point(aes(color=stability), size=2) +
-  scale_color_manual(values=c('grey','deepskyblue1','hotpink4','darkgreen'))+
+pH_time<-ggplot(d_stability_Forno, aes(y=pH_field, x=realTSR, color=stability)) +
+  geom_jitter(aes(color=stability), size=3, alpha=0.5) +
+  scale_color_manual(values=c('hotpink3','darkgreen','deepskyblue3'))+
   theme_bw()+ 
-  coord_cartesian(ylim=c(4,8)) +
-  labs(x="pH", y="time since glacial retreat (y)") +
+  coord_cartesian(xlim=c(0,120),ylim=c(4,8)) +
+  scale_x_continuous(breaks = c(0, 20, 40, 60, 80, 100,120))+
+  labs(x="time since glacial retreat (y)", y="pH") +
+  ggrepel::geom_text_repel(data=d_stability_Forno,mapping= aes(label=d_stability_Forno$point),size=3,box.padding=unit(0.5,"lines"))+
   theme_bw()
+pH_time
 
 ```
 
+However, there is still a difference according F28 that appear as stable-debris in Figure 5, and stable in our graph.
+And one other fluvial point between F24 and F22 is missing.
+Looking at the Tab "Table 5-1" of the original data received is seems a slightly different data set is present there. 
+It looks like the F28 point (with the following value: stoniness surface 50; stoniness soil 30, veg cover 50, pH field 7, SSD 0.7) was maked as debris flow (Potential disturbance variable) in this extra dataset, but not in the Export data set used here. since the extra dataset is not complete and does not include the name of the points this cannot be verified.
+
+Below the same code is run with this alternative data set called "Fig_5_alternative_data".
+
+```{r}
+
+
+
+```
 
 
 ### 2. Linear model
