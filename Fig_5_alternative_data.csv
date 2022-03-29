@@ -1,4 +1,4 @@
-﻿valley,geomorph zone,potential disturbance,stoniness surface (%),stoniness soil (%),veg cover (%),pH field,SSD
+﻿valley,geomorph_zone,potential_dist,stoniness_surf,stoniness_soil,veg_cover,pH_field,SSD
 F,development,debris flow,40,40,60,6,3.6
 F,development,debris flow,40,15,60,6,4.25
 F,development,debris flow,50,30,50,7,0.7
