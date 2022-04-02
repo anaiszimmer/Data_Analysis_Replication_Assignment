@@ -1,4 +1,4 @@
-﻿Site,point ,geomorph_zone,potential_dist,TSR ,realTSR,Y-decimal,X-decimal,rad_raster,altitude_m,slope,logslope,aspect ,E,N,plan curvature,plan_num,profile_curv,profile_num,curvature DEM,stoniness_surf,stoniness_soil,veg_type,veg_cover,texture_class,sorting,sand fraction,pH_field,soil_class,SSD
+﻿Site,point ,geomorph_zone,potential_dist,TSR ,realTSR,Ydecimal,Xdecimal,rad_raster,altitude_m,slope,logslope,aspect ,E,N,plan curvature,plan_num,profile_curv,profile_num,curvature DEM,stoniness_surf,stoniness_soil,veg_type,veg_cover,texture_class,sorting,sand fraction,pH_field,soil_class,SSD
 Morteratsch,M28 ,none,none,1857,154,46.44947222,9.940694444,1211319,1891,6,0.77815125,68,0.93,0.37,concave,3,concave,3,-0.64,80,15,,10,sand,poor,coarse sand,5.3,humic leptosol,5.1
 Morteratsch,M40 ,none,none,1850,161,46.45030556,9.941472222,1209226,1898,1,0,344,-0.28,0.96,straight,2,concave,3,0.32,10,15,,90,sand,poor,coarse sand,5,humic leptosol,1.7
 Morteratsch,M41 ,none,none,1850,161,46.44980556,9.941777778,1212442,1897,15,1.176091259,224,-0.69,-0.72,convex,1,convex,1,0.32,5,0,,95,sand,well,medium sand,4.5,humic leptosol,12
