@@ -53,11 +53,11 @@ I have deleted my previous analysis and present within the document the new R co
 
 ```{r}
  f <- "https://raw.githubusercontent.com/anaiszimmer/Data_Analysis_Replication_Assignment/main/Sites.csv"
- 
-# #f<-"https://raw.githubusercontent.com/anaiszimmer/Data_Analysis_Replication_Assignment/main/Data_Kas.csv" #previous data set
+ #f<-"https://raw.githubusercontent.com/anaiszimmer/Data_Analysis_Replication_Assignment/main/Data_Kas.csv" #previous data set wich is incomplete
+
  d <- read_csv(f, col_names = TRUE)
-# head(d)
-# #View(d)
+ head(d)
+
 
 ```
 ### 0. Study site map - Visualization
@@ -334,8 +334,8 @@ This disagreement might be what also cause the different results observed in the
 Now only an error with F23 which appear with "slope" in the both dataset, but as "fluvial" in the graph of the paper.
 
 ```{r}
-
-All_export <- read_csv("All_export.csv")
+f1<-"https://raw.githubusercontent.com/anaiszimmer/Data_Analysis_Replication_Assignment/main/All_export.csv"
+All_export <- read_csv(f1, col_names = TRUE)
 
 d_stability_Forno2<-All_export%>%
   filter(Site=="Forno")%>%
@@ -375,8 +375,6 @@ pro-glacial areas in all three valleys
 
 
 f <- "https://raw.githubusercontent.com/anaiszimmer/Data_Analysis_Replication_Assignment/main/Sites.csv"
-
-#f<-"https://raw.githubusercontent.com/anaiszimmer/Data_Analysis_Replication_Assignment/main/Data_Kas.csv" #previous data set
 d <- read_csv(f, col_names = TRUE)
 head(d)
 #View(d)
