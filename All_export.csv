@@ -1,0 +1,123 @@
+﻿point ,Site,geomorph_zone,potential_dist,TSR ,realTSR,Y-decimal,X-decimal,rad_raster,altitude (m),slope,log(slope),aspect ,E,N,plan_curv,plannumerical,profile_curv,profnumerical,curvature_DEM,stoniness_surf,stoniness_soil,veg type,veg_cover,texture class,sorting,sand fraction,pH_field,soil classification,SSD
+F1,Forno,development,,2008.5,2.5,46.33688889,9.699138889,1107124,2288,15,1.176091259,114,-0.913545458,0.406736643,straight,2,concave,3,-0.8,95,60,,0,sand,poor,coarse sand,6.5,skeletic leptosol,0
+F10,Forno,development,debris flow,1940.9,70.1,46.35377778,9.701944444,1169569,2122,25,1.397940009,70,0.939692621,0.342020143,convex,1,concave,3,-0.64,40,40,,60,sand,poor,coarse sand,6,humiskeletic leptosol,3.6
+F11,Forno,development,debris flow,1943.7,67.3,46.35338889,9.702416667,1094395,2111,22,1.342422681,90,1,0,concave,3,convex,1,0.16,40,15,,60,sand,poor,coarse sand,6,humic leptosol,4.25
+F12,Forno,development,,1945.3,65.7,46.35283333,9.701472222,1054153,2124,16,1.204119983,71,0.945518576,0.325568154,convex,1,convex,1,-0.32,95,60,,5,sand,poor,coarse sand,6,humiskeletic leptosol,2
+F13,Forno,development,,1950.3,60.7,46.35230556,9.701555556,1049212,2123,12,1.079181246,91,-0.999847695,0.017452406,convex,1,concave,3,-0.64,60,40,,40,sand,poor,coarse sand,6.5,humiskeletic leptosol,2.4
+F14,Forno,development,,1950.5,60.5,46.35194444,9.701055556,1113682,2142,20,1.301029996,86,0.99756405,0.069756474,concave,3,concave,3,-0.48,90,40,,5,sand,poor,coarse sand,6.5,humiskeletic leptosol,1.8
+F15,Forno,development,,1951.3,59.7,46.35169444,9.701111111,1112623,2142,25,1.397940009,86,0.99756405,0.069756474,concave,3,concave,3,0.16,40,10,,30,sand,poor,coarse sand,6.5,humic leptosol,12.6
+F16,Forno,development,,1950.4,60.6,46.35141667,9.700527778,1054968,2151,18,1.255272505,74,0.961261696,0.275637356,straight,2,straight,2,-0.64,80,40,,15,sand,poor,coarse sand,5.5,humiskeletic leptosol,0.6
+F17,Forno,development,,1954.6,56.4,46.35083333,9.700472222,1040547,2152,33,1.51851394,135,-0.707106781,0.707106781,convex,1,convex,1,0,85,25,,10,sand,poor,coarse sand,5,humic leptosol,2.25
+F18,Forno,development,,1957.4,53.6,46.35063889,9.701027778,1028809,2143,13,1.113943352,45,0.707106781,0.707106781,concave,3,concave,3,-0.16,90,45,,7,sand,poor,coarse sand,5,humiskeletic leptosol,1.1
+F19,Forno,development,,1959.9,51.1,46.35008333,9.700888889,1122993,2144,15,1.176091259,128,-0.788010754,0.615661475,convex,1,concave,3,-0.32,90,50,,5,sand,poor,coarse sand,6,skeletic leptosol,0
+F2,Forno,development,,2008.2,2.8,46.33725,9.6995,1035236,2270,0,0,,6.12574E-17,1,straight,2,straight,2,-0.32,5,50,,0,sand,layered,medium sand,6.5,haplic fluvisol,0
+F20,Forno,development,,1961.2,49.8,46.34955556,9.700722222,1102800,2150,35,1.544068044,186,0.104528463,0.994521895,straight,2,convex,1,-0.48,90,40,,5,sand,poor,coarse sand,6,skeletic leptosol,0
+F21,Forno,development,,1945,66,46.35127778,9.700055556,1095688,2177,35,1.544068044,60,0.866025404,0.5,convex,1,convex,1,0,80,45,,20,sand,poor,coarse sand,5.5,humiskeletic leptosol,1.1
+F22,Forno,development,,1969.4,41.6,46.34794444,9.700416667,981628,2167,5,0.698970004,48,0.743144825,0.669130606,straight,2,concave,3,0,30,10,,70,sand,poor,coarse sand,5,,0
+F23,Forno,slope,,1973,38,46.34627778,9.699694444,965980,2204,20,1.301029996,84,0.994521895,0.104528463,straight,2,straight,2,-0.64,95,45,,3,sand,poor,coarse sand,5.5,skeletic leptosol,0
+F24,Forno,development,,1975.5,35.5,46.34422222,9.699444444,1070010,2229,3,0.477121255,241,0.874619707,0.48480962,concave,3,concave,3,-0.64,70,40,,30,sand,poor,coarse sand,5.8,humiskeletic leptosol,1.2
+F25,Forno,fluvial,,1980.5,30.5,46.343,9.700277778,1132211,2224,2,0.301029996,359,0.017452406,-0.999847695,straight,2,straight,2,-1.12,60,40,,10,sand,better,coarse sand,7,skeletic leptosol,0
+F26,Forno,fluvial,,1899,112,46.35758333,9.706555556,1037435,2070,1,0,76,0.970295726,0.241921896,straight,2,concave,3,0,10,10,,60,sand,good,medium sand,7,humic fluvisol,6.3
+F27,Forno,fluvial,,1904.5,106.5,46.35697222,9.706083333,1092624,2071,3,0.477121255,133,-0.731353702,0.68199836,straight,2,concave,3,0.16,40,15,,60,sand,poor,coarse sand,7,humic leptosol,0.85
+F28,Forno,development,debris flow,1909.6,101.4,46.35663889,9.705583333,1113421,2074,0,0,,6.12574E-17,1,straight,2,straight,2,-0.16,50,30,,50,sand,poor,medium/coarse,7,humic leptosol,0.7
+F29,Forno,development,debris flow,1904.7,106.3,46.35680556,9.7055,1101020,2074,35,1.544068044,174,-0.104528463,0.994521895,convex,1,convex,1,-0.48,60,25,,40,sand,poor,coarse sand,7,humic leptosol,4.5
+F3,Forno,,,2010,1,46.33744444,9.700083333,986166,2261,0,0,,6.12574E-17,1,straight,2,straight,2,-0.32,80,60,,0,sand,poor,coarse sand,6.5,skeletic leptosol,0
+F30,Forno,development,,1914.5,96.5,46.35613889,9.704916667,1097634,2078,2,0.301029996,14,0.241921896,0.970295726,concave,3,concave,3,0.16,40,5,,60,sand,better,medium sand,7,humic fluvisol,5.7
+F31,Forno,fluvial,,1930,81,46.35536111,9.704527778,1092955,2079,7,0.84509804,52,0.788010754,0.615661475,convex,1,convex,1,0,85,40,,15,sand,poor,coarse sand,7,humiskeletic leptosol,1.2
+F4,Forno,development,,2006.7,4.3,46.33780556,9.699388889,1114266,2263,17,1.230448921,118,-0.882947593,0.469471563,convex,1,convex,1,0,95,50,,0,sand,poor,coarse sand,6.5,skeletic leptosol,0
+F5,Forno,development,,1920.3,90.7,46.35586111,9.704333333,1136305,2083,4,0.602059991,36,0.587785252,0.809016994,straight,2,concave,3,-0.32,60,30,,40,sand,poor,coarse sand,5,humic leptosol,5.6
+F6,Forno,development,,1931.3,79.7,46.35513889,9.704222222,1108251,2083,10,1,94,-0.99756405,0.069756474,convex,1,convex,1,-0.48,40,20,,50,sand,poor,coarse sand,5,humic leptosol,2.4
+F7,Forno,development,,1936.9,74.1,46.35438889,9.702833333,1091070,2104,3,0.477121255,2,0.034899497,0.999390827,concave,3,concave,3,-0.16,10,40,,90,sand,poor,coarse sand,5.8,humiskeletic leptosol,6
+F8,Forno,development,,1940.7,70.3,46.35405556,9.703055556,1092823,2102,45,1.653212514,132,-0.743144825,0.669130606,convex,1,convex,1,-0.16,60,30,,40,sand,poor,coarse sand,5,humic leptosol,3.5
+F9,Forno,development,debris flow,1940.9,70.1,46.35377778,9.701972222,1169569,2122,,0,,6.12574E-17,1,,2,,2,-0.64,98,98,,,sand,poor,coarse sand,,,0
+M1 ,MorTschiervaeraTschiervasch,development,debris flow,1872.8,138.2,46.44672222,9.943388889,957930,1934,23,1.361727836,294,-0.91,0.41,convex,1,convex,1,-0.48,20,30,,90,sand,poor,coarse sand,4.5,humic leptosol,17.5
+M10 ,MorTschiervaeraTschiervasch,development,,2002.2,8.8,46.42855556,9.934472222,1144899,2012,2,0.301029996,120,0.87,-0.5,straight,2,straight,2,-0.48,80,40,,15,sand,poor,coarse sand,7,skeletic leptosol,0
+M11 ,MorTschiervaeraTschiervasch,fluvial,,2002.4,8.6,46.42836111,9.93475,1155850,2011,1,0,356,-0.07,1,straight,2,straight,2,-0.48,60,25,,0,sand,poor,coarse sand,7,haplic leptosol,0
+M12 ,MorTschiervaeraTschiervasch,fluvial,,2001,10,46.42869444,9.934861111,1099117,2009,1,0,336,-0.41,0.91,straight,2,straight,2,-0.48,50,25,,0,sand,vague layering,coarse sand,7,haplic leptosol,0
+M13 ,MorTschiervaeraTschiervasch,fluvial,,2000.2,10.8,46.42911111,9.934555556,1191034,2011,0,0,,,,straight,2,straight,2,-0.32,1,0,,2,loamy sand/sand,layered,coarse/medium,7,haplic fluvisol,0
+M14 ,MorTschiervaeraTschiervasch,development,,1985.5,25.5,46.42986111,9.932472222,1137545,2043,25,1.397940009,134,0.72,-0.69,straight,2,concave,3,-0.48,70,25,,30,sand,poor,coarse sand,6,humic leptosol,0.75
+M15 ,MorTschiervaeraTschiervasch,development,,1985.5,25.5,46.43,9.932472222,1091330,2043,10,1,95,1,-0.09,concave,3,concave,3,-0.48,15,25,,80,sand,poor,coarse sand,6,humic leptosol,4.88
+M16 ,MorTschiervaeraTschiervasch,development,,1987.3,23.7,46.43011111,9.932944444,1241611,2032,10,1,110,0.94,-0.34,straight,2,convex,1,-0.48,85,40,,10,sand,poor,coarse sand,7,skeletic leptosol,0
+M17 ,MorTschiervaeraTschiervasch,development,,1979.1,31.9,46.43080556,9.9335,1214886,2031,20,1.301029996,182,-0.03,0.1,straight,2,straight,2,-0.32,85,45,,10,sand,poor,coarse sand,7,skeletic leptosol,0
+M18 ,MorTschiervaeraTschiervasch,development,,1974.3,36.7,46.43094444,9.933555556,1258262,2033,10,1,332,-0.47,0.88,convex,1,concave,3,0.16,75,20,,20,sand,poor,coarse sand,5.8,humic leptosol,0.8
+M19 ,MorTschiervaeraTschiervasch,development,,1963.2,47.8,46.43219444,9.93425,1211354,2020,2,0.301029996,224,-0.69,-0.72,straight,2,concave,3,-0.48,60,15,,40,sand,slightly better,medium,5.8,humic leptosol,1.7
+M2 ,MorTschiervaeraTschiervasch,development,debris flow,1910,101,46.44255556,9.941694444,1049670,1952,5,0.698970004,344,-0.28,0.96,concave,3,straight,2,0,20,20,,70,sand,poor,coarse sand,4.2,dystric regosol,9.6
+M20 ,MorTschiervaeraTschiervasch,development,,1960.6,50.4,46.43219444,9.934222222,1196739,2023,30,1.477121255,318,-0.67,0.74,straight,2,straight,2,-0.48,60,25,,40,sand,slightly better,medium,6.5,haplic leptosol,0
+M21 ,MorTschiervaeraTschiervasch,development,,1963.2,47.8,46.43219444,9.934361111,1211354,2020,3,0.477121255,224,-0.69,-0.72,convex,1,convex,1,-0.48,60,25,,40,sand,slightly better,medium,6.5,haplic leptosol,0
+M22 ,MorTschiervaeraTschiervasch,development,,1960.6,50.4,46.43219444,9.934166667,1196739,2023,45,1.653212514,140,0.64,-0.77,straight,2,straight,2,-0.48,60,25,,40,sand,slightly better,medium,6.5,haplic leptosol,0
+M23 ,MorTschiervaeraTschiervasch,development,,1950.1,60.9,46.43497222,9.934972222,1174089,2012,1,0,220,-0.64,-0.77,straight,2,concave,3,0.32,60,15,,40,sand,slightly better,medium,5.8,humic leptosol,1.7
+M24 ,MorTschiervaeraTschiervasch,development,,1940.8,70.2,46.43608333,9.934138889,1097099,2021,30,1.477121255,148,0.53,-0.85,straight,2,convex,1,-0.48,20,10,,75,sand,slightly better,medium,5.5,humic leptosol,1.8
+M25 ,MorTschiervaeraTschiervasch,development,,1942.7,68.3,46.43727778,9.935916667,1081384,2003,7,0.84509804,110,0.94,-0.34,convex,1,concave,3,0,70,35,,30,sand,slightly better,medium,5.5,humic leptosol,1.95
+M26 ,MorTschiervaeraTschiervasch,development,,1940.8,70.2,46.43833333,9.936388889,1161190,1992,1,0,336,-0.41,0.91,concave,3,concave,3,0,20,5,,80,sand,layered,medium/coarse,5.5,humic fluvisol,0.95
+M27 ,MorTschiervaeraTschiervasch,development,,1926.3,84.7,46.441,9.936722222,1211764,1977,1,0,10,0.17,0.98,convex,1,convex,1,-0.32,20,15,,80,sand,poor,coarse sand,5.5,humic leptosol,3.4
+M28 ,MorTschiervaeraTschiervasch,none,,1857,154,46.44947222,9.940694444,1211319,1891,6,0.77815125,68,0.93,0.37,concave,3,concave,3,-0.64,80,15,,10,sand,poor,coarse sand,5.3,humic leptosol,5.1
+M29 ,MorTschiervaeraTschiervasch,development,,1855.3,155.7,46.448,9.941638889,1044178,1920,2,0.301029996,62,0.88,0.47,convex,1,convex,1,-0.32,10,10,,90,sand,poor,medium/coarse,5,humic leptosol,4.5
+M3 ,MorTschiervaeraTschiervasch,development,,2010,1,46.42661111,9.933222222,1047967,2048,0,0,,,,straight,2,straight,2,-0.8,85,50,,0,sand,poor,coarse sand,5.5,skeletic leptosol,0
+M30 ,MorTschiervaeraTschiervasch,development,,1888.3,122.7,46.44538889,9.939944444,1205382,1947,2,0.301029996,118,0.88,-0.47,concave,3,straight,2,-0.32,15,5,,85,sand,layered,medium/coarse,4.8,humic leptosol,2.85
+M31 ,MorTschiervaeraTschiervasch,development,,1899,112,46.44461111,9.939861111,1130610,1946,1,0,328,-0.53,0.85,convex,1,convex,1,-0.16,70,40,,30,sand,poor,coarse sand,6,humiskeletic leptosol,1.2
+M32 ,MorTschiervaeraTschiervasch,development,bare rock,1902.8,108.2,46.44330556,9.938722222,1220517,1963,15,1.176091259,66,0.91,0.41,convex,1,convex,1,0,80,40,,20,sand,poor,coarse sand,5,humiskeletic leptosol,1.8
+M33 ,MorTschiervaeraTschiervasch,development,bare rock,1912.7,98.3,46.44275,9.938388889,1188318,1969,20,1.301029996,144,0.59,-0.81,convex,1,concave,3,0.64,85,50,,5,sand,poor,coarse sand,5,humiskeletic leptosol,1.25
+M34 ,MorTschiervaeraTschiervasch,development,bare rock,1916.6,94.4,46.44222222,9.937972222,1158060,1974,23,1.361727836,170,0.17,-0.98,convex,1,convex,1,-0.16,90,50,,10,sand,poor,coarse sand,5,humiskeletic leptosol,0.5
+M35 ,MorTschiervaeraTschiervasch,development,,1921,90,46.44136111,9.9365,1260139,1984,35,1.544068044,188,-0.14,-0.99,straight,2,convex,1,-0.64,85,35,,30,sand,poor,coarse sand,5,humic leptosol,0.65
+M36 ,MorTschiervaeraTschiervasch,development,,1915.3,95.7,46.44272222,9.939083333,1146704,1959,0,0,,,,straight,2,straight,2,-0.64,20,40,,80,sand,poor,coarse sand,5,humiskeletic leptosol,4.8
+M37 ,MorTschiervaeraTschiervasch,development,,1915.3,95.7,46.44272222,9.939083333,1146704,1959,2,0.301029996,56,0.83,0.56,convex,1,convex,1,-0.64,80,50,,20,sand,poor,coarse sand,5,humiskeletic leptosol,0.5
+M38 ,MorTschiervaeraTschiervasch,development,,2006,5,46.42641667,9.935055556,975818,2033,35,1.544068044,286,-0.96,0.28,straight,2,straight,2,-0.16,95,60,,0,sand,poor,coarse sand,7.2,skeletic leptosol,0
+M39 ,MorTschiervaeraTschiervasch,development,,2004.3,6.7,46.42680556,9.935166667,1125287,2027,45,1.653212514,296,-0.9,0.44,concave,3,concave,3,-0.48,70,45,,0,sand,poor,coarse sand,7,skeletic leptosol,0
+M4 ,MorTschiervaeraTschiervasch,development,,1993.5,17.5,46.42936111,9.932527778,1120383,2042,6,0.77815125,130,0.77,-0.64,convex,1,straight,2,-0.16,85,40,,15,sand,poor,coarse sand,6.5,skeletic leptosol,0.6
+M40 ,MorTschiervaeraTschiervasch,none,,1850,161,46.45030556,9.941472222,1209226,1898,1,0,344,-0.28,0.96,straight,2,concave,3,0.32,10,15,,90,sand,poor,coarse sand,5,humic leptosol,1.7
+M41 ,MorTschiervaeraTschiervasch,none,,1850,161,46.44980556,9.941777778,1212442,1897,15,1.176091259,224,-0.69,-0.72,convex,1,convex,1,0.32,5,0,,95,sand,well,medium sand,4.5,humic leptosol,12
+M42 ,MorTschiervaeraTschiervasch,none,,1850,161,46.44972222,9.942,1202613,1894,1,0,11,0.19,0.98,straight,2,straight,2,-0.96,60,20,,40,sand,poor,coarse sand,5,humic leptosol,0.8
+M43 ,MorTschiervaeraTschiervasch,none,,1850,161,46.449,9.942416667,1156332,1905,0,0,,,,concave,3,concave,3,-0.64,30,35,,70,sand,poor,coarse sand,5,humic leptosol,1.3
+M44 ,MorTschiervaeraTschiervasch,none,,1850,161,46.44863889,9.942388889,1179335,1906,25,1.397940009,298,-0.88,0.47,straight,2,straight,2,-0.32,15,15,,10,sand,poor,coarse sand,6,humic leptosol,0.85
+M45 ,MorTschiervaeraTschiervasch,development,bare rock,1852.3,158.7,46.44836111,9.942527778,1071171,1909,30,1.477121255,242,-0.88,-0.47,straight,2,straight,2,-0.32,15,50,,85,sand,poor,coarse sand,5,humiskeletic leptosol,3
+M46 ,MorTschiervaeraTschiervasch,development,bare rock,1862.9,148.1,46.4475,9.942916667,1097409,1915,2,0.301029996,16,0.28,0.96,straight,2,straight,2,-0.48,10,15,,90,sand,poor,coarse sand,5.5,humic leptosol,3.4
+M47 ,MorTschiervaeraTschiervasch,development,bare rock,1881.1,129.9,46.44672222,9.942333333,1089242,1922,3,0.477121255,44,0.69,0.72,convex,1,convex,1,0.32,90,45,,10,sand,poor,coarse sand,6,skeletic leptosol,0
+M48 ,MorTschiervaeraTschiervasch,development,,1888.6,122.4,46.44580556,9.9425,1093781,1930,5,0.698970004,344,-0.28,0.96,straight,2,straight,2,0,40,45,,60,sand,poor,coarse sand,5,humiskeletic leptosol,1.1
+M49 ,MorTschiervaeraTschiervasch,development,debris flow,1897,114,46.44508333,9.942055556,1117990,1932,5,0.698970004,337,-0.39,0.92,straight,2,straight,2,-0.48,5,2,,95,sand,poor,coarse sand,5,humic leptosol,4.9
+M5 ,MorTschiervaeraTschiervasch,development,,2010,1,46.42586111,9.93425,654754,2062,2,0.301029996,40,0.64,0.77,convex,1,convex,1,0.32,80,40,,0,sand,poor,coarse sand,7.5,skeletic leptosol,0
+M50 ,MorTschiervaeraTschiervasch,development,debris flow,1900.1,110.9,46.44463889,9.94175,1082677,1936,7,0.84509804,247,-0.92,-0.39,concave,3,concave,3,0.16,10,10,,90,sand,poor,coarse sand,5,humic leptosol,0.9
+M51 ,MorTschiervaeraTschiervasch,development,debris flow,1901.8,109.2,46.44433333,9.941722222,1111490,1937,0,0,,,,straight,2,concave,3,-0.48,20,5,,80,sand,poor,coarse sand,5,humic leptosol,1.9
+M52 ,MorTschiervaeraTschiervasch,development,debris flow,1900.1,110.9,46.44441667,9.942194444,1024018,1938,15,1.176091259,290,-0.94,0.34,straight,2,straight,2,-0.48,60,50,,20,sand,poor,coarse sand,5.5,humiskeletic leptosol,1
+M6 ,MorTschiervaeraTschiervasch,development,,2010,1,46.42591667,9.934194444,654754,2062,3,0.477121255,345,-0.26,0.97,concave,3,concave,3,0.32,95,45,,0,sand,poor,coarse sand,7.5,skeletic leptosol,0
+M7 ,MorTschiervaeraTschiervasch,development,,2007.5,3.5,46.42588889,9.934972222,914996,2054,45,1.653212514,270,-1,0,straight,2,straight,2,0.16,85,35,,0,sand,poor,coarse sand,7.5,haplic leptosol,0
+M8 ,MorTschiervaeraTschiervasch,development,,2007.3,3.7,46.42705556,9.932777778,936708,2056,10,1,74,0.96,0.28,convex,1,convex,1,-0.16,95,60,,1,sand,poor,coarse sand,7.2,skeletic leptosol,0
+M9 ,MorTschiervaeraTschiervasch,development,,2006.6,4.4,46.42713889,9.93275,936708,2052,30,1.477121255,130,0.77,-0.64,straight,2,concave,3,0.16,80,40,,5,sand,poor,coarse sand,7.2,skeletic leptosol,0
+T1 ,Tschierva,development,,1955.6,55.4,46.40936111,9.85775,1197085.50000000000,2130,4,0.602059991,15,0.26,0.965925826,convex,1,convex,1,-0.16,15,20,,75,sandy loam/sand,poor,coarse sand,7.5,haplic leptosol,2.4
+T10,Tschierva,development,,1882.5,128.5,46.41763889,9.859888889,1218422.00000000000,2061,35,1.544068044,232,-0.79,-0.615661475,straight,2,straight,2,-0.32,60,20,,40,sandy loam,poor,medium sand,5.5,humic leptosol,3.2
+T11,Tschierva,development,,1880.7,130.3,46.41763889,9.860138889,1220861.87500000000,2059,27,1.431363764,130,0.77,-0.64278761,convex,1,convex,1,0.16,80,20,,20,sandy loam,poor,medium sand,5.5,humic leptosol,2.4
+T12,Tschierva,development,,1885.3,125.7,46.41705556,9.86025,1044438.37500000000,2057,38,1.579783597,240,-0.87,-0.5,concave,3,convex,1,-0.64,40,20,,60,sand,poor,coarse sand,5.5,humic leptosol,2.4
+T13,Tschierva,development,,1888.2,122.8,46.41688889,9.860444444,1051431.62500000000,2059,2,0.301029996,112,0.93,-0.374606593,concave,3,concave,3,-0.64,40,50,,60,sand,poor,coarse sand,5,humiskeletic leptosol,1
+T14,Tschierva,development,,1910,101,46.41594444,9.859611111,1082708.87500000000,2073,1,0,218,-0.62,-0.788010754,straight,2,straight,2,-0.64,60,20,,40,sand,poor,coarse sand,5,humic leptosol,0.8
+T15,Tschierva,development,,1928.6,82.4,46.41547222,9.859111111,1163984.50000000000,2082,45,1.653212514,75,0.97,0.258819045,convex,1,straight,2,0.16,30,20,,70,sandy loam,poor,medium sand,6,humic leptosol,1.6
+T16,Tschierva,development,,1935.9,75.1,46.41472222,9.858277778,1216706.12500000000,2087,25,1.397940009,252,-0.95,-0.309016994,concave,3,concave,3,-0.48,50,20,,50,sand,poor,coarse sand,7,humic leptosol,0.8
+T17,Tschierva,development,,1939.1,71.9,46.41383333,9.858027778,1215674.25000000000,2095,15,1.176091259,297,-0.89,0.4539905,concave,3,convex,1,-0.16,90,5,,10,sand,poor,coarse sand,7,haplic leptosol,0
+T18,Tschierva,development,,1940.4,70.6,46.41355556,9.859,1230631.25000000000,2105,6,0.77815125,282,-0.98,0.207911691,straight,2,concave,3,-0.32,70,25,,30,sand,poor,coarse sand,7,humic leptosol,2.25
+T19,Tschierva,fluvial,,1939.2,71.8,46.41363889,9.857222222,1237345.62500000000,2093,35,1.544068044,228,-0.74,-0.669130606,concave,3,straight,2,-0.16,20,10,,80,sand,poor,coarse sand,5.5,humic fluvisol,0.9
+T2 ,Tschierva,development,,1956.4,54.6,46.40922222,9.857861111,1197085.50000000000,2129,32,1.505149978,290,-0.94,0.342020143,convex,1,concave,3,0.16,40,25,,50,sand,poor,coarse sand,7.5,haplic leptosol,0.75
+T20,Tschierva,,,1850,161,46.42080556,9.857,1202229.87500000000,2059,0,0,,,,straight,2,convex,1,-0.32,30,35,,70,sand,poor,medium sand,4.8,humic leptosol,4.55
+T21 ,Tschierva,development,,1853.8,157.2,46.4205,9.857833333,1156662.50000000000,2055,45,1.653212514,120,0.87,-0.5,convex,1,straight,2,0.32,30,30,,40,sand,poor,coarse sand,5,humic leptosol,1.4
+T22,Tschierva,development,,1870,141,46.41844444,9.857194444,1183250.62500000000,2074,25,1.397940009,28,0.47,0.882947593,convex,1,concave,3,0.16,35,10,,65,sand,poor,coarse sand,5.8,humic leptosol,4.5
+T23,Tschierva,development,,1872.7,138.3,46.41811111,9.856944444,1250181.75000000000,2076,9,0.954242509,34,0.56,0.829037573,convex,1,convex,1,0,35,15,,65,sand,poor,coarse sand,5.8,humic leptosol,0.85
+T24,Tschierva,development,,1871.2,139.8,46.41788889,9.856444444,1249618.37500000000,2077,30,1.477121255,334,-0.44,0.898794046,straight,2,straight,2,0,40,30,,60,sand,poor,medium sand,5.8,humic leptosol,4.2
+T25,Tschierva,development,,1873.7,137.3,46.41766667,9.8565,1229865.12500000000,2077,10,1,152,0.47,-0.882947593,convex,1,straight,2,0,20,15,,80,sand,poor,medium sand,5.8,humic leptosol,5.95
+T26,Tschierva,development,,1877.6,133.4,46.41747222,9.856611111,1211665.12500000000,2077,40,1.602059991,72,0.95,0.309016994,straight,2,straight,2,0,15,5,,85,sand,poor,medium sand,5.8,humic leptosol,1.9
+T27,Tschierva,development,,1881.2,129.8,46.41744444,9.856888889,1177827.75000000000,2076,1,0,316,-0.69,0.7193398,straight,2,straight,2,-0.32,70,30,,20,sand,poor,coarse sand,7,haplic leptosol,0
+T28,Tschierva,fluvial,,1887.8,123.2,46.41727778,9.857027778,1060846.12500000000,2077,0,0,,,,convex,1,convex,1,0,90,40,,5,sand,poor,coarse sand,7,skeletic leptosol,0
+T29,Tschierva,fluvial,,1891.5,119.5,46.41725,9.857694444,924091.25000000000,2075,2,0.301029996,38,0.62,0.788010754,straight,2,straight,2,0,5,25,,95,sandy loam,poor,medium sand,5,humic leptosol,2.25
+T3 ,Tschierva,development,,1956.9,54.1,46.40952778,9.858527778,1071990.37500000000,2122,0,0,,,,concave,3,concave,3,0.32,5,0,,15,sandy loam,very well,very fine,7.5,haplic leptosol,1
+T30,Tschierva,development,,1881.7,129.3,46.4165,9.855861111,1213268.75000000000,2079,5,0.698970004,228,-0.74,-0.669130606,convex,1,convex,1,-0.64,85,20,,15,sand,poor,coarse sand,6,humic leptosol,2.4
+T31,Tschierva,development,,1899.1,111.9,46.41572222,9.856,1203322.25000000000,2078,1,0,4,0.07,0.99756405,straight,2,concave,3,-0.16,80,40,,20,sand,poor,coarse sand,6,humiskeletic leptosol,3
+T32,Tschierva,development,,1893.7,117.3,46.41527778,9.855472222,1014505.62500000000,2087,30,1.477121255,270,-1,1.22515E-16,convex,1,convex,1,0.32,40,20,,60,sand,poor,coarse sand,6.5,humic leptosol,1.6
+T33,Tschierva,development,,1920.7,90.3,46.41477778,9.856111111,1189457.62500000000,2089,25,1.397940009,140,0.64,-0.766044443,convex,1,concave,3,0,80,10,,10,sand,poor,coarse sand,7,humic leptosol,1.8
+T34,Tschierva,development,,1907.7,103.3,46.4145,9.855583333,1013058.37500000000,2094,1,0,262,-0.99,-0.139173101,straight,2,straight,2,-0.32,5,20,,95,sand,better,medium sand,7,humic leptosol,3.2
+T35,Tschierva,development,,1908.5,102.5,46.41375,9.855166667,1207624.75000000000,2105,10,1,57,0.84,0.544639035,concave,3,concave,3,0,40,40,,60,sand,poor,coarse sand,7,humiskeletic leptosol,1.2
+T36,Tschierva,development,,1897.8,113.2,46.41358333,9.854944444,1228917.50000000000,2111,2,0.301029996,44,0.69,0.7193398,straight,2,straight,2,0.16,85,40,,10,sand,poor,coarse sand,7,humiskeletic leptosol,1.8
+T37,Tschierva,development,,1852.9,158.1,46.40955556,9.854805556,1184552.62500000000,2149,15,1.176091259,102,0.98,-0.207911691,convex,1,convex,1,0.64,80,30,,20,sand,poor,medium sand,7.2,humic leptosol,2.1
+T38,Tschierva,,,1852.9,158.1,46.40955556,9.854555556,1182414.50000000000,2149,25,1.397940009,9,0.16,0.987688341,concave,3,concave,3,0,70,30,,30,sand,poor,coarse sand,7.2,humic leptosol,1.4
+T39,Tschierva,development,,1852.9,158.1,46.40975,9.854416667,1129412.62500000000,2147,20,1.301029996,28,0.47,0.882947593,convex,1,concave,3,-0.32,70,30,,30,sand,poor,coarse sand,7.2,humic leptosol,1.4
+T4,Tschierva,fluvial,,1957.6,53.4,46.40952778,9.859611111,1207831.87500000000,2120,8,0.903089987,110,0.94,-0.342020143,straight,2,straight,2,-0.16,90,60,,0,sand,poor,coarse sand,7.8,skeletic leptosol,0
+T5,Tschierva,slope,,1987.1,23.9,46.40852778,9.859694444,949614.68750000000,2139,16,1.204119983,16,0.28,0.961261696,straight,2,straight,2,-0.48,95,15,,10,sand,poor,coarse sand,7.2,humic leptosol,2.55
+T6,Tschierva,fluvial,,1874.3,136.7,46.41861111,9.858527778,1278154.37500000000,2069,1,0,44,0.69,0.7193398,straight,2,straight,2,0.32,80,15,,50,sand,layered,coarse sand,7,haplic fluvisol,0
+T7,Tschierva,fluvial,,1876.6,134.4,46.41827778,9.858222222,1233300.12500000000,2071,0,0,,,,concave,3,concave,3,0.16,40,50,,60,sand,poor,coarse sand,7,skeletic leptosol,0
+T8,Tschierva,fluvial,,1877.2,133.8,46.418,9.857527778,1242753.37500000000,2074,3,0.477121255,54,0.81,0.587785252,convex,1,convex,1,0.32,90,50,,10,sand,poor,coarse sand,7,skeletic leptosol,0
+T9,Tschierva,development,,1883.9,127.1,46.41777778,9.85875,1180371.25000000000,2067,0,0,,,,straight,2,straight,2,-0.16,20,40,,80,sand,poor,coarse sand,6,humiskeletic leptosol,1.2
