@@ -7,33 +7,36 @@ output: html_document
 
 ### Introduction
 
- Short text description of the study and of the specific data and reanalyses you will be doing, to orient your reader. Outline (briefly!) the goal of the original paper, the data set used, and the analyses conducted, then describe which ones you will replicate.
+This study "Pro-glacial soil variability and geomorphic activity – the case of three Swiss valleys" published in 2013 by Arnaud Temme and Kas Lange, investigates the evolution of soil properties along 3 proglacial chronosequences of deglaciation in Switzerland. The aim of the paper is to show that the time for space substitution approach (chronosequence) is not always the best approach to study proglacial soil development. To do so they use linear modeling to assess the impacts of factors such as slope, curvature, insulation, etc., on soil development (i.e., soil properties).
+The conclusions of the paper are that the models are not transferable between valleys and so proglacial soil properties are dependent on local environmental variables. Also, they found that the time since glacier retreat does not fully explain soil properties, and rarely explains more than half of the variation.
+I have selected this paper because (1) I am currently working on a soiled paper, doing similar analyses, (2) Arnaud Temme is part of my Ph.D. committee, (3) I found their results very interesting, and still unique for this field.
+
+
+My main objectives of this Replication Data Assignment are to replicate:
+(1) the Summary statistics of soil observations (Table II of the paper), 
+(2) the representation of the pH Values of the Morteratsch valley as a function of time since glacial retreat for observations in the fluvial and stable zones (Figure 5. of the paper), 
+and (3) the correlation between the time since glacial retreat and soil properties, for the stable zone of the pro-glacial areas in all three valleys (Table III of the paper).
+
+In addition, and to train me in working with spatial data, I tried to replicate Figure 3., which shows the soil sample location in the three studied valleys.
  
  
- The mayor objectives of this Replication Data Assignment is to replicate the (1) Summary statistics of soil observations (Table II of the paper), (2) the representation of the pH Values of the Morteratsch valley as a function of time since glacial retreat for observations in the fluvial and stable zones (Figure 5. of the paper), and (3) the correlation between the time since glacial retreat and soil properties, for the stable zone of the pro-glacial areas in all three valleys (Table III of the paper).
- In addition, and to train myself working with spatial data, I tried to replicate Figure 3., which shows the soil sample location in the three studied valleys.
- 
- 
- Therefore, this Rmd document is divided is 4 parts
+Therefore, this .Rmd document is divided in 4 parts
  
 0. Visualization of the 3 Study sites and samples
-Slight modification of figure 3 to reproduce the figure with the available data
+A slight modification of figure 3 to reproduce the figure with the available data
 
 1. Summary statistic
  Replication of Table II. Summary statistics of soil observations
  
-2. Descriptive analysis - Visualization of Figure 5: pH Values as a function of time since glacial retreat for observations in the fluvial and stable zones, with potential debris flows in the stable zone separated from the rest of that zone. 
+2. Descriptive analysis - Visualization of Figure 5: pH Values as a function of time since glacial retreat for observations in the fluvial and stable zones, with potential debris, flows in the stable zone separated from the rest of that zone. 
 
-3.Linear model 
+3. Linear model 
 Replication of:
-* Table III. Strength (r) and significance (p (r = 0)) of the correlation between the time since glacial retreat and soil properties, for the stable zone of the pro-glacial areas in all three valleys
+* Table III. Strength (r) and significance (p (r = 0)) of the correlation between the time since the glacial retreat and soil properties, for the stable zone of the pro-glacial areas in all three valleys.
 
 
-<!-- 4. Multiregression analysis -->
-<!-- Replication of Table IV. Multiple linear regression model performance (r2 value) for soil properties for each valley -->
- 
- 
 ### Preliminaries 
+
 -   Install and load in the following libraries:{tidyverse},{rstatix}
 
 ```{r}
@@ -46,14 +49,14 @@ library(kableExtra) # for re-organizing table (e.g. headers)
 
 -   Loading the data
 
-* The soil data set comes from 111 locations visited; 46 in the Morteratsch (M) valley, 36 in the Tschierva (T) valley and 29 in the Forno (F) valley.
-Previous analysis were made with an incomplete data set. When I figure it out during spring break, I asked Dr. Temme for another data set. On March 25th he sent me an excel document with many tabs. Then I ordered the data to create a clean CSV to work on R.
-I have deleted my previous analysis and present within the document the new R code based on the complete dataset.
+The soil data set comes from 111 locations visited: 46 in the Morteratsch (M) valley, 36 in the Tschierva (T) valley, and 29 in the Forno (F) valley.
+Previous analyses were made with an incomplete data set (called Data Kas.csv). When I figure it out during spring break, I asked Dr. Temme for another data set. On March 25th he sent me an excel document with many tabs. Then I ordered the data to create a clean CSV to work on R (Sites.csv).
+I have deleted my previous analysis and present here the new R code based on the complete dataset.
 
-
+** Sites.csv data set
 ```{r}
- f <- "https://raw.githubusercontent.com/anaiszimmer/Data_Analysis_Replication_Assignment/main/Sites.csv"
- #f<-"https://raw.githubusercontent.com/anaiszimmer/Data_Analysis_Replication_Assignment/main/Data_Kas.csv" #previous data set wich is incomplete
+ f <- "https://raw.githubusercontent.com/anaiszimmer/Data_Analysis_Replication_Assignment/main/data/Sites.csv"
+ #f<-"https://raw.githubusercontent.com/anaiszimmer/Data_Analysis_Replication_Assignment/main/data/Data_Kas.csv" #previous data set which was incomplete
 
  d <- read_csv(f, col_names = TRUE)
  head(d)
@@ -61,6 +64,19 @@ I have deleted my previous analysis and present within the document the new R co
 
 ```
 ### 0. Study site map - Visualization
+
+This figure is an attempt to replicate Figure 3 (below) of the paper, without using the Google Earth or Google Map background.
+
+* Original figure from the paper
+
+```{r, fig.cap="Figure 2 paper: Soil sample locations in the three studied valleys", out.width = '80%'}
+knitr::include_graphics("images/Figure3.png")
+```
+
+* Replication of the figure
+
+I used the data from the Global Land Ice Measurements from Space (GLIMS: https://www.glims.org/maps/glims)
+
 ```{r}
 ##Loading additional package for GIS visualization
 
@@ -68,10 +84,10 @@ library(sf) #for ploting shape and coordenates
 library(ggplot2)
 library(ggspatial) # for annotating maps
 
-## Loading GIS data - glaciers shape - downloaded on GLIMS (https://www.glims.org/maps/glims)
+## Loading GIS data - glaciers shape - downloaded on GLIMS 
    # I did not wanted to bother Dr.Temme again, so insted of maping the 1850 extent, I used the full glacier data I found online on the GLIMS website.
 
-GLIMSglaciers<-st_read("glims_download_15633/glims_glaciers_polygons.shp")
+GLIMSglaciers<-st_read("data/glims_download_15633/glims_glaciers_polygons.shp")
 
 dgeo <- st_as_sf(d, coords = c("Xdecimal", "Ydecimal"),crs = 4326, agr = "constant")
 
@@ -91,7 +107,7 @@ Morteratsch_plots <- ggplot(data = filter(dgeo,Site=="Morteratsch")) +
     pad_x = unit(0.75, "in"), pad_y = unit(0.8, "in"),
     style = north_arrow_fancy_orienteering)
   #geom_text(data = filter(GLIMSglaciers, glac_name=="MORTERATSCH VADRET DA"), aes(X,Y,label = glac_name), size = 5)
-Morteratsch_plots
+#Morteratsch_plots
 
 #Tschierva study site
 Tschierva_plots <- ggplot(data = filter(dgeo,Site=="Tschierva")) +
@@ -108,7 +124,7 @@ Tschierva_plots <- ggplot(data = filter(dgeo,Site=="Tschierva")) +
     location = "tl", which_north = "true",
     pad_x = unit(0.75, "in"), pad_y = unit(0.8, "in"),
     style = north_arrow_fancy_orienteering)
-Tschierva_plots
+#Tschierva_plots
 
 #Plotting Forno study site
 Forno_plots <- ggplot(data = filter(dgeo,Site=="Forno")) +
@@ -125,9 +141,9 @@ Forno_plots <- ggplot(data = filter(dgeo,Site=="Forno")) +
     location = "tl", which_north = "true",
     pad_x = unit(0.75, "in"), pad_y = unit(0.8, "in"),
     style = north_arrow_fancy_orienteering)
-Forno_plots
+#Forno_plots
   
-par(mfrow=c(3,1))
+par(mfrow=c(1,3))
 Morteratsch_plots
 Tschierva_plots
 Forno_plots
@@ -136,9 +152,11 @@ Forno_plots
 
 ```
 
-Previous to this, I had the objective to use a Google map background, as in Figure 3 of the paper. I tried two methods, using the package ggmap, and the package leaflet.
-For {ggmap} and get_googlemap(), I learnt that now we need credit on Google cloud to get the necessary API Key. I could have use some of the free credits, but since they ask credit card information and etc. (in case we over passed the number of free credit allowed) I did not want to do it and I look for another method.
-Regarding {leaflet} and {sp}, I got some fun interactive maps but it was not what I was looking for. Also I was not able to add the plot points to it.
+- Previously, I had the objective to use a Google map background, as in Figure 3 of the paper. I tried two methods, using the package {ggmap}, and the package {leaflet}.
+
+Regarding {ggmap} and the get_googlemap() function, I learned that now we need credit on Google Cloud to get the necessary API Key. I could have used some of the free credits available, but since they ask for credit card information (in case we overpassed the number of free credits allowed) I did not want to do it and I look for another method.
+
+According to {leaflet} and {sp}, I got some fun interactive maps that I am showing here, but it was not what I was looking for. Also, I was not able to add the plot points to it.
 
 ```{r}
 
@@ -154,11 +172,22 @@ leaflet(df) %>% addCircleMarkers() %>% addTiles()
 ```
 
 
+
+
 ### 1. Summary statistic
-* Table II presents the summary statistics for some numerical attributes of the soils for every pro-glacial valley for the stable and fluvial zones.
+
+Table II presents the summary statistics for some numerical attributes of the soils for every pro-glacial valley for the stable and fluvial zones.
+They calcultaed the mean and standard deviation for pH (pH_field), Depth of soil formation ("SSD" = significant soil depth),Vegetation cover ("veg_cover"), Soil Stoniness ("stoniness_soil"), and Surface stoniness ("stoniness_surf"). 
+
+* Expected results from the paper: Table II.
+
+```{r, fig.cap="Table 2 paper: Summary statistic of soil observations", out.width = '100%'}
+knitr::include_graphics("images/Table2.png")
+```
+
+* Replication of the analysis.
 
 ```{r}
-
 ## computing summary statistic for the 5 variables of interest: pH, SSD, Vegetation cover, Soil Stoniness and Surface Stoniness, for all observations, and for each site depending of the geomorphological zone (Stable or Fluvial)
   
  #reordering Site to read results with the same order than in the paper (easier to check on data values)
@@ -191,7 +220,7 @@ table %>%rename(zone='geomorph_zone')%>%
   rename(pH_sd="pH_field_SD")%>%
   rename(Number_observations="n")->table
 
-table$Number_observations<-as.factor(table$Number_observations) # needed to transform Number of Obs as a factor if no apllying the transpose t() function will round it at 0.1
+table$Number_observations<-as.factor(table$Number_observations) # needed to transform Number of Obs as a factor if no applying the transpose t() function will round it at 0.1
 
 
 table<-table%>%as.data.frame()%>% dplyr::select(Number_observations, pH_mean, pH_sd, SSD_Mean, SSD_SD,veg_cover_Mean,veg_cover_SD, stoniness_soil_Mean, stoniness_soil_SD, stoniness_surf_Mean, stoniness_surf_SD)%>%mutate_if(is.numeric, round, digits=1)%>%t()
@@ -202,13 +231,16 @@ kableExtra::kbl(table) %>%
   kable_paper("striped", full_width = F) %>%
   add_header_above(c("Zone"=1,"All" ,"Stable" = 1, "Fluvial" = 1,"Stable" = 1, "Fluvial" =1 ,"Stable" = 1, "Fluvial" = 1),bold=T) %>%
   add_header_above(c("Pro-glacial area " = 1, "All", "Forno" = 2, "Tschierva" = 2, "Morteratsch" = 2),bold=T)%>%
-   pack_rows("Variables",2 ,3)
+  pack_rows("Variables",2 ,3)
   
 
 ```
+In general, the results obtained are the same as the ones presented in the paper. Except for a few values, there is a 0.1 difference. The number of total observations is the same, therefore the differences might be due to different rounding options. The authors did their analysis in excel and the table was made by hand. Maybe rounding in excel could give very slight differences. Example: Tshierva, mean of pH for the fluvial zone (0.9 vs 1.0).
+In addition, for some values, there are bigger differences. Eg Mean Soil depth (= SSD) for the Stable zone of Morteratsch (1.3 versus 1.9). Unfortunately, I could not figure out from where the errors come. But the overall tendencies are the same.
 
-* Paper's method: The T-test was used to test for differences in mean soil properties between the different zones in pro-glacial areas.
-They tested for pH (pH_field), Depth of soil formation ("SSD" = significant soil depth),Vegetation cover ("veg_cover"), Soil Stoniness ("stoniness_soil"), and Surface stoniness ("stoniness_surf"). The standard deviation was also computed.
+* Then, the probabilities that the fluvial and stable zones have equal means were calculated by doing T-tests between zones, for each soil property: pH (pH_field), Depth of soil formation ("SSD" = significant soil depth), Vegetation cover ("veg_cover"), Soil Stoniness ("stoniness_soil"), and Surface stoniness ("stoniness_surf"). 
+
+Here is my code to compute all the T-tests and store them in a second table.
 
 ```{r}
 # Computing the P-Value of the T-test
@@ -222,14 +254,14 @@ Table_p_values<-tibble(Site=character(),
 
 Site<-unique(d$Site)
 
-df<-d%>%select(pH_field, veg_cover, stoniness_soil, stoniness_surf)
+df<-d%>%select(pH_field, veg_cover, stoniness_soil, stoniness_surf,SSD)
 
 Site<-unique(d$Site)
 for (i in Site){
    for (j in names(df)){
      #print(j)
  temp<-d %>% filter(Site==i)%>%select(j, geomorph_zone)
- print(nrow(temp))
+ #print(nrow(temp))
  p<-t.test(temp[[j]]~temp$geomorph_zone)$p.value
  #print(p)
  r<- tibble(Site=i,variable=j,p=p)
@@ -240,18 +272,35 @@ Table_p_values
 Table_p_values<-Table_p_values%>%select(variable,p)%>%
  rename('p-value (stable=fluvial)' ="p")
 
+#Creating a nicer table to store the p-values results.
 kableExtra::kbl(Table_p_values) %>%
   kable_classic()%>%
   kable_paper("striped", full_width = F) %>%
-  pack_rows("Morteratsch",1 ,4)%>%
-  pack_rows("Tschierva",5 ,8)%>%
-  pack_rows("Forno",9 ,12)
+  pack_rows("Morteratsch",1 ,5)%>%
+  pack_rows("Tschierva",6 ,10)%>%
+  pack_rows("Forno",11 ,15)
 
 ```
 
-### 2. Descriptive analysis - Visualization of Figure 5: pH Values as a function of time since glacial retreat for observations in the fluvial and stable zones, with potential debris flows in the stable zone separated from the rest of that zone. 
+Except for the Forno Glacier which shows some little discrepancy, the p-values obtained are the same ones as the authors did. This can also confirm our previous results for the mean and the sd for the Forno and Tschierva glaciers are correct since we obtained the same p-value here.
 
-```{r, include=TRUE}
+
+
+
+### 2. Descriptive analysis - Visualization of Figure 5
+
+* Figure 5: pH Values as a function of time since glacial retreat for observations in the fluvial and stable zones, with potential debris flows in the stable zone separated from the rest of that zone. 
+
+This is the original Figure 5 of the paper.
+
+```{r, fig.cap="Figure 5 paper: pH and time", out.width = '100%'}
+knitr::include_graphics("images/pH_time.png")
+```
+
+* Replication of the Figure
+I had to try several ways to find out the same visual results than the paper figure, here I explain step by step what I did and tested.
+
+```{r}
 
 # Creating a new data set to remove "slope" and "none" values of the [geomorh_zone variable]
 d_stability_Forno<-d%>%filter(Site=="Forno")%>% ###COMMENTS : It took me a very long while to understand the graph was only including the Forno data set!
@@ -283,10 +332,11 @@ pH_time<-ggplot(d_stability_Forno, aes(y=pH_field, x=realTSR, color=stability)) 
 pH_time
 
 ```
-* On this first version of the graph we observe three differences with the original graph of the paper. One fluvial point is missing from the data base and one points (top right) appear as stable and should be a fluvial point, as weel its neighboor that is also stable and should be stable-debris.
+
+On this first version of the graph we observe three differences with the original graph of the paper. One fluvial point is missing from the data base and one poins (top right) appear as stable and should be a fluvial point, as well its neighbor that is also stable and should be stable-debris.
 
 
-Below we look at the same graph but using different shapes to draw the pH values. Here, we notice that F27 and F29 where superposed. 
+Below we look at the same graph but using different shapes to draw the pH values. Here, we can notice that F27 and F29 where superposed. 
 The blue fluvial F27 was hidden by the green stable 29.
 
 
@@ -322,19 +372,19 @@ pH_time
 
 ```
 
-However, there is still a difference according F28 that appear as stable-debris (red)  on the original figure in Figure 5, and as stable (green) in our graph.
+However, there is still a difference according to F28 that appears as stable-debris (red) on the original figure in Figure 5, and as stable (green) in our graph.
 And one other fluvial point between F24 and F22 is missing.
 
-Looking again a the dataset shared by the authors, there is another dataset tab, called All_export. The data of this data set is identic to the Site dataset, but except for the variable Potential disturbance where the point F28 is considered as debris flow instead of NA.
+Looking again at the data set shared by the authors, there is another data set tab, called All_export. The data of this data set is identical to the Site data set, except for the variable Potential disturbance where the point F28 is considered as debris flow instead of NA.
 
 Below the same code is run with this alternative data set called "All Export".
 
-This disagreement might be what also cause the different results observed in the Summary table.But we have the same count of observation, so this is still questionable.
+This disagreement might also explain the different results observed in the Summary table. But we have the same count of observations, so this is still questionable.
 
-Now only an error with F23 which appear with "slope" in the both dataset, but as "fluvial" in the graph of the paper.
+
 
 ```{r}
-f1<-"https://raw.githubusercontent.com/anaiszimmer/Data_Analysis_Replication_Assignment/main/All_export.csv"
+f1<-"https://raw.githubusercontent.com/anaiszimmer/Data_Analysis_Replication_Assignment/main/data/All_export.csv"
 All_export <- read_csv(f1, col_names = TRUE)
 
 d_stability_Forno2<-All_export%>%
@@ -361,20 +411,28 @@ pH_time2
 
 ```
 
+With this new data set we only observe an error with F23 which appear with "slope" in both dataset, but as "fluvial" in the graph of the paper.
+I cannot find another explanation that different data used to make the graph.
+
+
 ### 3. Linear model
 
+Linear models for the various numerical soil properties were estimated with time and topographical properties as explanatory variables to assess the joint effect of time and topography. The output, Table III, is a summary of the model performance for each of the soil properties in each of the valleys.
 
-Linear models for the various numerical soil properties were estimated with time and topographical properties as explanatory variables in order to assess the joint effect of time and topography.
-Table IV summarizes model performance for each of the soil properties in each of the valleys.
+* Table III. Strength (r) and significance (p (r = 0)) of the correlation between the time since glacial retreat and soil properties, for the stable zone of the pro-glacial areas in all three valleys
 
-* Table III. Strength (r) and significance (p (r = 0)) of the correlation between the time since glacial retreat and soil properties, for the stable zone of the
-pro-glacial areas in all three valleys
+Here are the results expected from Table III:
+
+
+```{r, fig.cap="Table III paper: Correlation between time and soil properties", out.width = '100%'}
+knitr::include_graphics("images/Table3.png")
+```
+
+
+* Replication of the summary table using the Pearson correlation coefficient.
 
 ```{r}
-
-
-
-f <- "https://raw.githubusercontent.com/anaiszimmer/Data_Analysis_Replication_Assignment/main/Sites.csv"
+f <- "https://raw.githubusercontent.com/anaiszimmer/Data_Analysis_Replication_Assignment/main/data/Sites.csv"
 d <- read_csv(f, col_names = TRUE)
 head(d)
 #View(d)
@@ -406,8 +464,7 @@ dcor$Site<-factor(dcor$Site,levels = c("Forno","Tschierva","Morteratsch"))
 
 Site<-unique(dcor$Site)
 
-dvar<-dcor%>%select(pH_field,SSD, veg_cover, stoniness_soil, stoniness_surf)
-
+dvar<-dcor%>%select(pH_field,SSD, veg_cover, stoniness_soil, stoniness_surf,SSD)
 
 
 #Empty table for results
@@ -420,7 +477,7 @@ for (i in Site){
   for (j in names(dvar)){
     #print(j)
     temp<-dcor %>% filter(Site==i)
-    print(nrow(temp))
+    #print(nrow(temp))
     p<-cor.test(temp[[j]],temp$realTSR,method="pearson")$p.value
     rho<-cor.test(temp[[j]],temp$realTSR,method="pearson")$estimate
     #print(p)
@@ -437,14 +494,29 @@ Table_pearson<-Table_pearson%>%select(variable,r,p) #remove the column site for 
   kable_paper("striped", full_width = F) %>%
   pack_rows("Morteratsch  n=31",1 ,5)%>%
   pack_rows("Tschierva  n=29",6 ,10)%>%
-  pack_rows("Forno  n=22",11 ,15)
+  pack_rows("Forno  n=22",11 ,14)
 
  
 ```
 
-The results obtained are very different than the one of Table III. The sign of r is most of the time the same than show in Table III (except for pH at Forno).
-At the Forno, the authors used 20 points, I found 22 points in the table that have stable carracteristic and no NA values. It seems two points have be deleted from the data set. I cannot find which ones.
+
+The results obtained are very different than the ones in Table III. The sign of r is most of the time the same as shown in Table III (except for pH at Forno).
+At the Forno, the authors used 20 points, I found 22 points in the table that have stable characteristics and no NA values. It seems two points have been deleted from the data set. I cannot find which ones.
+
+The same analysis was run using the All_export data set ( to test if different results might be observed, maybe more similar to the paper), and no difference was noted.
 
 
-The same analysis were ran using the All export data (in can different results might be observed, more similar to the paper) and not difference were noted.
+
+### Discussion and Reflection
+
+
+Globally the results and conclusions of the study were very coherent with the ones in the paper. The values obtained in the Table summary (mean and sd, and p-value between stable and fluvial zone) were very similar to the one presented in the paper. We observed some divergence, but I conclude it is coming from differences in the data set. Maybe some points were adjusted (revised) and I don’t have the final data set. The example in Figure 5 (pH variation with time depending on geomorphological zone) is evident.
+
+However, the linear models run to compare the strength (r) and significance (p (r = 0)) of the correlation between the time since glacial retreat and soil properties, for the stable zone of the 3 sites gave quite different results than the ones presented in the paper. However, the same conclusions and tendencies can still be drawn. Again, this might be due to the original data set used. For example, in my data set, I had two more observations than in the paper for the Forno glacier, and could not figure out which ones have been delated and why.
+
+Finally, the information about the analyses done in the paper was very clear I don’t think this is the cause of the different results obtained. I was especially having trouble with the data set, understanding which one was the final one. The global excel document with a lot of sheets had a lot of different tables, with it seems, some difference in the data. I think this was the main challenge of this assignment: data cleaning?
+
+
+
+
 
